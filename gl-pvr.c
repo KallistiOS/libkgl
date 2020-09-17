@@ -191,7 +191,7 @@ inline void _glKosVertexBufReset() {
     GL_VERTS[0] = GL_VERTS[1] = 0;
 }
 
-staic inline GLuint _glKosVertexBufCount(GLubyte list) {
+static inline GLuint _glKosVertexBufCount(GLubyte list) {
     return GL_VERTS[list];
 }
 
