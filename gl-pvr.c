@@ -103,7 +103,7 @@ inline void _glKosPushMultiTexObject(GL_TEXTURE_OBJECT *tex,
     GL_MTOBJS[GL_MTOBJECTS++].count = count;
 }
 
-inline void _glKosResetMultiTexObject() {
+static inline void _glKosResetMultiTexObject() {
     GL_MTOBJECTS = 0;
 }
 
@@ -139,7 +139,7 @@ inline void _glKosClipBufIncrement() {
     ++GL_CVERTS;
 }
 
-inline void _glKosClipBufAdd(GLuint count) {
+void _glKosClipBufAdd(GLuint count) {
     GL_CVERTS += count;
 }
 
@@ -191,7 +191,7 @@ inline void _glKosVertexBufReset() {
     GL_VERTS[0] = GL_VERTS[1] = 0;
 }
 
-inline GLuint _glKosVertexBufCount(GLubyte list) {
+staic inline GLuint _glKosVertexBufCount(GLubyte list) {
     return GL_VERTS[list];
 }
 

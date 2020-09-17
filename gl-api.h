@@ -66,7 +66,6 @@ void  _glKosVertexBufAdd(unsigned int count);
 void  _glKosTRVertexBufAdd(unsigned int count);
 void  _glKosVertexBufDecrement();
 void  _glKosVertexBufReset();
-inline unsigned int _glKosVertexBufCount(unsigned char list);
 unsigned char _glKosList();
 void _glKosVertexBufCopy(void *src, void *dst, GLuint count);
 void _glKosResetEnabledTex();
