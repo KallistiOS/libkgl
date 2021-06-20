@@ -479,7 +479,7 @@ GLAPI void APIENTRY glClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 
 /* Depth Testing */
 GLAPI void APIENTRY glClearDepthf(GLfloat depth);
-#define glClearDepth glClearDepthf
+GLAPI void APIENTRY glClearDepth(GLfloat depth);
 GLAPI void APIENTRY glDepthMask(GLboolean flag);
 GLAPI void APIENTRY glDepthFunc(GLenum func);
 

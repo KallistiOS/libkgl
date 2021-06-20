@@ -186,6 +186,11 @@ void APIENTRY glClearDepthf(GLfloat depth) {
     ;
 }
 
+//== NoOp ==//
+void APIENTRY glClearDepth(GLfloat depth) {
+    ;
+}
+
 void APIENTRY glDepthFunc(GLenum func) {
     switch(func) {
         case GL_LESS:
