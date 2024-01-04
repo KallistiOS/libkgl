@@ -31,9 +31,6 @@
 #include "gl-sh4.h"
 #include "gl-pvr.h"
 
-#define QACR0 (*(volatile unsigned long *)(void *)0xff000038)
-#define QACR1 (*(volatile unsigned long *)(void *)0xff00003c)
-
 /* Vertex Buffer Functions *************************************************************************/
 
 #ifdef GL_KOS_USE_MALLOC
@@ -208,8 +205,7 @@ inline void _glKosVertexBufCopy(void *dst, void *src, GLuint count) {
 
 static inline void glutSwapBuffer() {
 #ifndef GL_KOS_USE_DMA
-    QACR0 = QACRTA;
-    QACR1 = QACRTA;
+    sq_lock(PVR_TA_INPUT);
 #endif
 
     pvr_list_begin(PVR_LIST_OP_POLY);
@@ -258,6 +254,10 @@ static inline void glutSwapBuffer() {
     pvr_list_finish();
 
     pvr_scene_finish();
+
+#ifndef GL_KOS_USE_DMA
+    sq_unlock();
+#endif
 }
 
 void glutSwapBuffers() {
