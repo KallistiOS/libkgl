@@ -53,7 +53,6 @@ static GLuint GL_VERTS[2] = {0, 0},
 static GL_MULTITEX_OBJECT GL_MTOBJS[GL_KOS_MAX_MULTITEXTURE_OBJECTS];
 static GLuint             GL_MTOBJECTS = 0;
 
-#if 0
 /* Custom version of sq_cpy from KOS for copying vertex data to the PVR */
 static inline void pvr_list_submit(void *src, int n) {
     GLuint *d = TA_SQ_ADDR;
@@ -94,12 +93,6 @@ static inline void pvr_hdr_submit(const GLuint *src) {
 
     asm("pref @%0" : : "r"(d));
 }
-#else
-
-#define pvr_list_submit(src, n) sq_cpy(TA_SQ_ADDR, (src), ((n) << 5))
-#define pvr_hdr_submit(src) sq_cpy(TA_SQ_ADDR, (src), 32)
-
-#endif
 
 inline void _glKosPushMultiTexObject(GL_TEXTURE_OBJECT *tex,
                                      pvr_vertex_t *src,
@@ -212,10 +205,8 @@ inline void _glKosVertexBufCopy(void *dst, void *src, GLuint count) {
 
 static inline void glutSwapBuffer() {
 #ifndef GL_KOS_USE_DMA
-#if 0
     QACR0 = QACRTA;
     QACR1 = QACRTA;
-#endif
 #endif
 
     pvr_list_begin(PVR_LIST_OP_POLY);
