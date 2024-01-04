@@ -37,8 +37,6 @@ typedef struct {
 #define TA_SQ_ADDR (unsigned int *)(void *) \
     (0xe0000000 | (((unsigned long)0x10000000) & 0x03ffffe0))
 
-#define QACR0 (*(volatile unsigned long *)(void *)0xff000038)
-#define QACR1 (*(volatile unsigned long *)(void *)0xff00003c)
 #define QACRTA ((((unsigned int)0x10000000)>>26)<<2)&0x1c
 
 #define PVR_TA_TXR_FILTER_SHIFT     14

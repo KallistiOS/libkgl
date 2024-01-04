@@ -31,6 +31,9 @@
 #include "gl-sh4.h"
 #include "gl-pvr.h"
 
+#define QACR0 (*(volatile unsigned long *)(void *)0xff000038)
+#define QACR1 (*(volatile unsigned long *)(void *)0xff00003c)
+
 /* Vertex Buffer Functions *************************************************************************/
 
 #ifdef GL_KOS_USE_MALLOC
