@@ -31,6 +31,9 @@
 #include "gl-sh4.h"
 #include "gl-pvr.h"
 
+#define QACR0 (*(volatile unsigned long *)(void *)0xff000038)
+#define QACR1 (*(volatile unsigned long *)(void *)0xff00003c)
+
 /* Vertex Buffer Functions *************************************************************************/
 
 #ifdef GL_KOS_USE_MALLOC
@@ -55,7 +58,7 @@ static GLuint             GL_MTOBJECTS = 0;
 
 /* Custom version of sq_cpy from KOS for copying vertex data to the PVR */
 static inline void pvr_list_submit(void *src, int n) {
-    GLuint *d = TA_SQ_ADDR;
+    GLuint *d = SQ_MASK_DEST_ADDR(PVR_TA_INPUT);
     GLuint *s = src;
 
     /* fill/write queues as many times necessary */
@@ -80,7 +83,7 @@ static inline void pvr_list_submit(void *src, int n) {
 
 /* Custom version of sq_cpy from KOS for copying 32bytes of vertex data to the PVR */
 static inline void pvr_hdr_submit(const GLuint *src) {
-    GLuint *d = TA_SQ_ADDR;
+    GLuint *d = SQ_MASK_DEST_ADDR(PVR_TA_INPUT);
 
     d[0] = *(src++);
     d[1] = *(src++);
