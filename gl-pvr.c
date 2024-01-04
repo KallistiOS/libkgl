@@ -58,7 +58,7 @@ static GLuint             GL_MTOBJECTS = 0;
 
 /* Custom version of sq_cpy from KOS for copying vertex data to the PVR */
 static inline void pvr_list_submit(void *src, int n) {
-    GLuint *d = SQ_MASK_DEST_ADDR(PVR_TA_INPUT);
+    GLuint *d = TA_SQ_ADDR;
     GLuint *s = src;
 
     /* fill/write queues as many times necessary */
@@ -83,7 +83,7 @@ static inline void pvr_list_submit(void *src, int n) {
 
 /* Custom version of sq_cpy from KOS for copying 32bytes of vertex data to the PVR */
 static inline void pvr_hdr_submit(const GLuint *src) {
-    GLuint *d = SQ_MASK_DEST_ADDR(PVR_TA_INPUT);
+    GLuint *d = TA_SQ_ADDR;
 
     d[0] = *(src++);
     d[1] = *(src++);
@@ -208,7 +208,8 @@ inline void _glKosVertexBufCopy(void *dst, void *src, GLuint count) {
 
 static inline void glutSwapBuffer() {
 #ifndef GL_KOS_USE_DMA
-    sq_lock(PVR_TA_INPUT);
+    QACR0 = QACRTA;
+    QACR1 = QACRTA;
 #endif
 
     pvr_list_begin(PVR_LIST_OP_POLY);
@@ -257,10 +258,6 @@ static inline void glutSwapBuffer() {
     pvr_list_finish();
 
     pvr_scene_finish();
-
-#ifndef GL_KOS_USE_DMA
-    sq_unlock();
-#endif
 }
 
 void glutSwapBuffers() {
