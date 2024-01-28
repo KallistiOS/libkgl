@@ -53,7 +53,7 @@ static GLuint GL_VERTS[2] = {0, 0},
 static GL_MULTITEX_OBJECT GL_MTOBJS[GL_KOS_MAX_MULTITEXTURE_OBJECTS];
 static GLuint             GL_MTOBJECTS = 0;
 
-#if 0
+#if 1
 /* Custom version of sq_cpy from KOS for copying vertex data to the PVR */
 static inline void pvr_list_submit(void *src, int n) {
     GLuint *d = TA_SQ_ADDR;
