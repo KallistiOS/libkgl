@@ -99,7 +99,7 @@ static inline void pvr_hdr_submit(const GLuint *src) {
 #define pvr_list_submit(src, n) do { \
         pvr_sq_load(NULL, (src), n << 5, PVR_DMA_TA); \
         sq_wait(); \
-    while(0)
+    } while(0)
 
 #define pvr_hdr_submit(src) pvr_sq_load(NULL, (src), 32, PVR_DMA_TA)
 
