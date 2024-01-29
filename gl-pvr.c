@@ -96,8 +96,8 @@ static inline void pvr_hdr_submit(const GLuint *src) {
 }
 #else
 
-#define pvr_list_submit(src, n) sq_fast_cpy(PVR_TA_INPUT, (src), ((n) << 5))
-#define pvr_hdr_submit(src) sq_fast_cpy(PVR_TA_INPUT, (src), 32)
+#define pvr_list_submit(src, n) sq_cpy(PVR_TA_INPUT, (src), ((n) << 5))
+#define pvr_hdr_submit(src) sq_cpy(PVR_TA_INPUT, (src), 32)
 
 #endif
 
