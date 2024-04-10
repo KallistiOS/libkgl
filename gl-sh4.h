@@ -9,14 +9,16 @@
 #ifndef GL_SH4_H
 #define GL_SH4_H
 
+#include <arch/args.h>
+
 typedef float vector3f[3];     /* 3 float vector */
 typedef float matrix4f[4][4];  /* 4x4 float matrix */
 
 /* DEG2RAD - convert Degrees to Radians = PI / 180.0f */
-#define DEG2RAD (0.01745329251994329576923690768489)
+#define DEG2RAD (0.01745329251994329576923690768489f)
 
 /* Calculate Spot Light Angle Cosine = (PI / 180.0f) * (n / 2) */
-#define LCOS(n) fcos(n*0.00872664625997164788461845384244)
+#define LCOS(n) fcos(n*0.00872664625997164788461845384244f)
 
 /* Internal GL API macro */
 #define mat_trans_fv12() { \
@@ -50,10 +52,10 @@ typedef float matrix4f[4][4];  /* 4x4 float matrix */
     }
 
 #define mat_trans_texture4(s, t, r, q) { \
-        register float __s __asm__("fr4") = (s); \
-        register float __t __asm__("fr5") = (t); \
-        register float __r __asm__("fr6") = (r); \
-        register float __q __asm__("fr7") = (q); \
+        register float __s __asm__(KOS_FPARG(0)) = (s); \
+        register float __t __asm__(KOS_FPARG(1)) = (t); \
+        register float __r __asm__(KOS_FPARG(2)) = (r); \
+        register float __q __asm__(KOS_FPARG(3)) = (q); \
         __asm__ __volatile__( \
                               "ftrv	xmtrx,fv4\n" \
                               "fldi1	fr6\n" \
@@ -67,8 +69,8 @@ typedef float matrix4f[4][4];  /* 4x4 float matrix */
     }
 
 #define mat_trans_texture2_nomod(s, t, so, to) { \
-        register float __s __asm__("fr4") = (s); \
-        register float __t __asm__("fr5") = (t); \
+        register float __s __asm__(KOS_FPARG(0)) = (s); \
+        register float __t __asm__(KOS_FPARG(1)) = (t); \
         __asm__ __volatile__( \
                               "fldi0	fr6\n" \
                               "fldi1	fr7\n" \
