@@ -30,7 +30,7 @@ typedef struct {
 #define GL_KOS_LIST_TR 1
 
 #define GL_KOS_USE_MALLOC 1 /* Use Dynamic Vertex Array */
-//#define GL_KOS_USE_DMA    1 /* Use PVR DMA for vertex data transfer instead of store queues */
+#define GL_KOS_USE_DMA    1 /* Use PVR DMA for vertex data transfer instead of store queues */
 //#define GL_USE_FLOAT  0 /* Use PVR's floating-point color Vertex Type (64bit) *NoOp* */
 
 /* Misc SH4->PVR Commands */
