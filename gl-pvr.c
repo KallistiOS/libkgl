@@ -53,53 +53,8 @@ static GLuint GL_VERTS[2] = {0, 0},
 static GL_MULTITEX_OBJECT GL_MTOBJS[GL_KOS_MAX_MULTITEXTURE_OBJECTS];
 static GLuint             GL_MTOBJECTS = 0;
 
-#if 0
-/* Custom version of sq_cpy from KOS for copying vertex data to the PVR */
-static inline void pvr_list_submit(void *src, int n) {
-    GLuint *d = TA_SQ_ADDR;
-    GLuint *s = src;
-
-    /* fill/write queues as many times necessary */
-    while(n--) {
-        asm("pref @%0" : : "r"(s + 8));  /* prefetch 32 bytes for next loop */
-        d[0] = *(s++);
-        d[1] = *(s++);
-        d[2] = *(s++);
-        d[3] = *(s++);
-        d[4] = *(s++);
-        d[5] = *(s++);
-        d[6] = *(s++);
-        d[7] = *(s++);
-        asm("pref @%0" : : "r"(d));
-        d += 8;
-    }
-
-    /* Wait for both store queues to complete */
-    d = (GLuint *)0xe0000000;
-    d[0] = d[8] = 0;
-}
-
-/* Custom version of sq_cpy from KOS for copying 32bytes of vertex data to the PVR */
-static inline void pvr_hdr_submit(const GLuint *src) {
-    GLuint *d = TA_SQ_ADDR;
-
-    d[0] = *(src++);
-    d[1] = *(src++);
-    d[2] = *(src++);
-    d[3] = *(src++);
-    d[4] = *(src++);
-    d[5] = *(src++);
-    d[6] = *(src++);
-    d[7] = *(src++);
-
-    asm("pref @%0" : : "r"(d));
-}
-#else
-
 #define pvr_list_submit(src, n) pvr_sq_load(NULL, (src), ((n) << 5), PVR_DMA_TA)
 #define pvr_hdr_submit(src) pvr_sq_load(NULL, (src), 32, PVR_DMA_TA)
-
-#endif
 
 inline void _glKosPushMultiTexObject(GL_TEXTURE_OBJECT *tex,
                                      pvr_vertex_t *src,
