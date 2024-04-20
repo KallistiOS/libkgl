@@ -34,9 +34,6 @@ typedef struct {
 //#define GL_USE_FLOAT  0 /* Use PVR's floating-point color Vertex Type (64bit) *NoOp* */
 
 /* Misc SH4->PVR Commands */
-#define TA_SQ_ADDR (unsigned int *)(void *) \
-    (0xe0000000 | (((unsigned long)0x10000000) & 0x03ffffe0))
-
 #define QACRTA ((((unsigned int)0x10000000)>>26)<<2)&0x1c
 
 #define PVR_TA_TXR_FILTER_SHIFT     14
