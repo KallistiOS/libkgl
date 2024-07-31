@@ -47,7 +47,7 @@ static pvr_cmd_t   *GL_CBUF;                                  /* Dynamic Clip Bu
 static glTexCoord  *GL_UVBUF;                                 /* Dynamic Multi-Texture UV Buffer */
 #else
 static pvr_cmd_t    GL_VBUF[2][GL_KOS_MAX_VERTS] __attribute__((aligned(32))); /* Static Vertex Buffer */
-static pvr_cmd_t    GL_CBUF[GL_KOS_MAX_VERTS / 2];                             /* Static Clip Buffer */
+static pvr_cmd_t    GL_CBUF[GL_KOS_MAX_VERTS / 2] __attribute__((aligned(32)));                             /* Static Clip Buffer */
 static glTexCoord   GL_UVBUF[GL_KOS_MAX_VERTS / 2];                    /* Static Multi-Texture UV Buffer */
 #endif
 
