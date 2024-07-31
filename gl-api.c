@@ -21,6 +21,12 @@
 #include "gl-sh4.h"
 #include "gl-pvr.h"
 
+#define printf(...) \
+    do { \
+        (printf)(__VA_ARGS__); \
+        fflush(stdout);\ 
+    } while(0)
+
 //====================================================================================================//
 //== Local API State Macine Variables ==//
 
@@ -53,15 +59,17 @@ static inline void _glKosFinishRect();
 //== API Initialization ==//
 
 void APIENTRY glKosInit() {
+    printf("INIT PVR\n");
     _glKosInitPVR();
-
+    printf("INIT TEXTURES\n");
     _glKosInitTextures();
-
+    printf("INIT MATRIX\n");
     _glKosInitMatrix();
-
+    printf("INIT LIGHTING\n");
     _glKosInitLighting();
-
-    _glKosInitFrameBuffers();
+    printf("INIT FRAMEBUFFERS\n");
+    _glKosInitFrameBuffers();\
+    printf("DONE\n");
 }
 
 //====================================================================================================//
