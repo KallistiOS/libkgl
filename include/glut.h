@@ -13,7 +13,7 @@
 __BEGIN_DECLS
 
 #ifndef BUILD_LIBGL
-#include <GL/gl.h>
+#include <KGL/gl.h>
 #endif
 
 /* Flush the Submitted Primitive Data to the GPU for render */
