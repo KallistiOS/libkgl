@@ -31,14 +31,6 @@
 #include "gl-sh4.h"
 #include "gl-pvr.h"
 
-
-#define printf(...) \
-    do { \
-        (printf)(__VA_ARGS__); \
-        fflush(stdout);\ 
-    } while(0)
-
-
 /* Vertex Buffer Functions *************************************************************************/
 
 #ifdef GL_KOS_USE_MALLOC
@@ -231,7 +223,6 @@ static inline void glutSwapBuffer() {
 
 void glutSwapBuffers() {
     pvr_wait_ready();
-    printf("PVR READY\n");
     if(_glKosGetFBO()) {
         GLsizei w = _glKosGetFBOWidth(_glKosGetFBO());
         GLsizei h = _glKosGetFBOHeight(_glKosGetFBO());
@@ -239,15 +230,12 @@ void glutSwapBuffers() {
     }
     else
         pvr_scene_begin();
-    printf("SCENE BEGAN\n");
 
     glutSwapBuffer();
 
-    printf("SWAPPED BUFFERZ\n");
     _glKosVertexBufReset();
 
     _glKosMultiUVBufReset();
-    printf("RESET SHIT\n");
 }
 
 void glutCopyBufferToTexture(void *dst, GLsizei *x, GLsizei *y) {
