@@ -54,9 +54,13 @@ static inline void _glKosFinishRect();
 
 void APIENTRY glKosInit() {
     _glKosInitPVR();
+
     _glKosInitTextures();
+
     _glKosInitMatrix();
+
     _glKosInitLighting();
+
     _glKosInitFrameBuffers();
 }
 
