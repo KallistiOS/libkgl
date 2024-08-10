@@ -11,7 +11,6 @@
 
 #include <arch/args.h>
 
-
 typedef float vector3f[3];     /* 3 float vector */
 typedef float matrix4f[4][4];  /* 4x4 float matrix */
 
