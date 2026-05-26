@@ -1,6 +1,6 @@
 # KallistiOS ##version##
 #
-# kos-ports/libgl Makefile
+# libkgl Makefile
 # Copyright (C) 2013, 2014 Josh Pearson
 # Copyright (C) 2014 Lawrence Sebald
 
@@ -19,5 +19,5 @@ include $(KOS_BASE)/addons/Makefile.prefab
 
 # creates the kos link to the headers
 create_kos_link:
-	rm -f ../include/GL
-	ln -s ../libgl/include ../include/GL
+	rm -f $(KOS_BASE)/addons/include/KGL
+	ln -s $(CURDIR)/include $(KOS_BASE)/addons/include/KGL
